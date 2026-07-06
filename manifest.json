@@ -1,0 +1,12 @@
+{
+  "name": "Personal Budget Dashboard",
+  "short_name": "Budget",
+  "description": "A self-contained monthly budget dashboard for local browser use.",
+  "id": "./",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#101116",
+  "theme_color": "#11131a",
+  "orientation": "portrait-primary",
+  "categories": ["finance", "productivity"]
+}

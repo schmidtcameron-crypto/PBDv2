@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#11131a">
+    <title>Personal Budget Dashboard</title>
+    <link rel="manifest" href="./manifest.json">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">Local monthly planner</p>
+          <h1>Personal Budget Dashboard</h1>
+        </div>
+        <div class="save-pill" aria-live="polite">
+          <span class="save-dot" aria-hidden="true"></span>
+          <span id="saveStatus">Saved locally</span>
+        </div>
+      </header>
+
+      <section class="panel income-panel" aria-labelledby="incomeTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Income</p>
+            <h2 id="incomeTitle">Available Money</h2>
+          </div>
+          <div class="big-total">
+            <span>Total available monthly money</span>
+            <strong id="totalIncome">$0.00</strong>
+          </div>
+        </div>
+
+        <div class="field-grid">
+          <label class="money-field" for="monthlyIncome">
+            <span>Monthly average income</span>
+            <span class="input-wrap">
+              <span aria-hidden="true">$</span>
+              <input id="monthlyIncome" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00">
+            </span>
+          </label>
+
+          <label class="money-field" for="weeklyIncome">
+            <span>Weekly average income</span>
+            <span class="input-wrap">
+              <span aria-hidden="true">$</span>
+              <input id="weeklyIncome" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00">
+            </span>
+          </label>
+
+          <label class="money-field" for="extraIncome">
+            <span>Overtime / extra income</span>
+            <span class="input-wrap">
+              <span aria-hidden="true">$</span>
+              <input id="extraIncome" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00">
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section aria-labelledby="summaryTitle">
+        <div class="section-heading compact-heading">
+          <div>
+            <p class="eyebrow">Dashboard</p>
+            <h2 id="summaryTitle">Monthly Summary</h2>
+          </div>
+        </div>
+
+        <div class="summary-grid">
+          <article class="summary-card accent-income">
+            <span>Total monthly income</span>
+            <strong id="summaryIncome">$0.00</strong>
+          </article>
+          <article class="summary-card">
+            <span>Total budgeted</span>
+            <strong id="summaryBudgeted">$0.00</strong>
+          </article>
+          <article class="summary-card">
+            <span>Total actual/spent</span>
+            <strong id="summaryActual">$0.00</strong>
+          </article>
+          <article class="summary-card" id="moneyRemainingCard">
+            <span>Money remaining</span>
+            <strong id="summaryRemaining">$0.00</strong>
+          </article>
+          <article class="summary-card" id="overBudgetCard">
+            <span>Total over budget</span>
+            <strong id="summaryOver">$0.00</strong>
+          </article>
+          <article class="summary-card accent-debt">
+            <span>Assigned to debt</span>
+            <strong id="summaryDebt">$0.00</strong>
+          </article>
+          <article class="summary-card accent-savings">
+            <span>Assigned to savings</span>
+            <strong id="summarySavings">$0.00</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel tools-panel" aria-labelledby="toolsTitle">
+        <div class="section-heading compact-heading">
+          <div>
+            <p class="eyebrow">Tools</p>
+            <h2 id="toolsTitle">Budget Controls</h2>
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button id="addBucket" type="button" class="button primary">Add Bucket</button>
+          <button id="exportData" type="button" class="button">Export Data</button>
+          <button id="copyData" type="button" class="button">Copy JSON</button>
+          <button id="resetDefaults" type="button" class="button danger-ghost">Reset Defaults</button>
+        </div>
+
+        <details class="import-panel">
+          <summary>Import Data</summary>
+          <label for="importJson" class="import-label">Paste JSON backup</label>
+          <textarea id="importJson" rows="6" spellcheck="false" placeholder='{"income":...,"buckets":[...]}'></textarea>
+          <div class="button-row import-actions">
+            <button id="importData" type="button" class="button primary">Import Data</button>
+            <button id="clearImport" type="button" class="button">Clear</button>
+          </div>
+        </details>
+      </section>
+
+      <section aria-labelledby="bucketsTitle">
+        <div class="section-heading compact-heading">
+          <div>
+            <p class="eyebrow">Buckets</p>
+            <h2 id="bucketsTitle">Monthly Buckets</h2>
+          </div>
+          <span id="bucketCount" class="count-pill">0 buckets</span>
+        </div>
+
+        <div id="bucketList" class="bucket-list"></div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
